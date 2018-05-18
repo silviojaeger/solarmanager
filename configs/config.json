@@ -1,0 +1,8 @@
+{
+	"inverter": {
+		"ip": "http://api.chew.pro",
+		"api": "/trbmb",
+		"interval": 5000,
+		"jsonKey": "pover.actualpover.irgendwas"
+	}	
+}
