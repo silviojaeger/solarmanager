@@ -1,7 +1,7 @@
 module.exports=function(app, inverter){
 	//All routes are defined here
 	
-	//main route
+	//gat at root directory
 	app.get('/', function (req, res) {
 	  res.sendfile('./view/index.html');
 	});

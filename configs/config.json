@@ -1,8 +1,18 @@
 {
 	"inverter": {
-		"ip": "http://api.chew.pro",
-		"api": "/trbmb",
-		"interval": 5000,
-		"jsonKey": "pover.actualpover.irgendwas"
-	}	
+		"brand": "Fronius",
+		"type": "Primo 1.1 -1",
+		"ip": "http://api.icndb.com",
+		"api": "/jokes/random",
+		"interval": 3000,
+		"jsonPath": ".value.id"
+	},
+	"device1": {
+		"name": "Tesla Wallcharger",
+		"brand": "Tesla",
+		"type": "test_1.0",
+		"ip": "http://api.icndb.com",
+		"apiOnOff":	"/test/onoff",
+		"apiGetInfo":	"/test/getInfo"
+	}
 }
