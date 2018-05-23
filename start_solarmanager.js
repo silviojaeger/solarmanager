@@ -7,7 +7,7 @@ var fs = require('fs');
 
 //Import own modules
 var inverter = require("./app/inverter");
-
+var rules = require("./app/rules");
 var routes = require("./app/routes")(app, inverter);
 
 //global variables
@@ -27,6 +27,12 @@ setInterval(
 		function(){ inverter.requestPover(); }, inverter.getIntervTime()
 );
 
+//rules
+if(rules.checkLowerRate()){
+	console.log("Niedertarif");
+}else{
+	console.log("Hochtarif");
+};
 
 //----------------------------------------------------------------------------------------
 
@@ -42,11 +48,12 @@ function readConfig(){
 	//more devices here
 };
 
-//Server starten und Port definieren
+//starts server on port 3000
 app.listen(3000, function () {
   console.log('----------------------------------');
   console.log('|  Solarmanager server started!  |');
   console.log('----------------------------------');
+  console.log('');
 });
 
 

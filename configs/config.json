@@ -4,7 +4,7 @@
 		"type": "Primo 1.1 -1",
 		"ip": "http://api.icndb.com",
 		"api": "/jokes/random",
-		"interval": 3000,
+		"interval": 8000,
 		"jsonPath": ".value.id"
 	},
 	"device1": {

@@ -55,7 +55,8 @@ function getJsonPath(){
 
 //HTTP requests
 function requestPover(){
-	var reqUrl = this.ip+this.api;
+
+		var reqUrl = this.ip+this.api;
 	console.log('------HTTP--Request----------------------------');
 	console.log('Start request to: '+reqUrl);
 	console.log('Interval Time: '+ this.intervTime);
@@ -67,13 +68,14 @@ function requestPover(){
 	  console.log('statusCode:', response && response.statusCode); 	// Print the response status code if a response was received	  								
 	  console.log('Response: '+body);
 	  console.log('-----------------------------------------------');
-	  console.log('Test: '+ jsonPath);
+	  console.log('Test: '+ this.jsonPath);
 	  
 	  handleJson(JSON.parse(body));  //calls handleJson function to read the right key/value from the Json file
 	  
 	  //Hier weiter!!!!!!!!! da request in anderem "thread" läuft kann nicht auf variabel jsonPath zugegriffen werden
 	  
 	});
+	
 }
 
 
@@ -83,6 +85,9 @@ function requestPover(){
 function handleJson(json){
 	//has to make: json.value.id    (getJsonPath returns string ".value.id")
 	actualPover=json.value.id;
+	
+	console.log('Test: '+ this.jsonPath);
+	
 	console.log('Pover set to: ' + actualPover);
 }
 
