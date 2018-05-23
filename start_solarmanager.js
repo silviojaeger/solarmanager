@@ -13,19 +13,16 @@ var routes = require("./app/routes")(app, inverter);
 //global variables
 var configJson;
 var inverterConfig;
+var devicesConfig;
 
 //-------TESTING-------------------------------------------------------------------------
 readConfig();
-
-inverter.setIp(inverterConfig.ip);
-inverter.setApi(inverterConfig.api);
-inverter.setIntervTime(inverterConfig.interval);
-inverter.setJsonPath(inverterConfig.jsonPath);
+initDevices();
 
 //Interval
 setInterval(
 	function(){ 
-			inverter.requestPover(); 
+			inverter.requestPower(); 
 	}, inverter.getIntervTime()
 );
 
@@ -43,12 +40,26 @@ if(rules.checkLowerRate()){
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-//reads the configuration File and initialize all devices
+//reads the configuration File
 function readConfig(){
 	configJson = JSON.parse(fs.readFileSync('./configs/config.json', 'utf8'));	//read config.json and store it to var configJson
 	inverterConfig= configJson.inverter;										//read Inverter	
-	//more devices here
+	devicesConfig= configJson.devices;											//read devices
+	
+	
 };
+
+//Initialize inverter and all devices
+function initDevices(){
+	inverter.setIp(inverterConfig.ip);
+	inverter.setApi(inverterConfig.api);
+	inverter.setIntervTime(inverterConfig.interval);
+	inverter.setJsonPath(inverterConfig.jsonPath);
+	
+	for(var item in devicesConfig) {
+		  console.log(item+": "+devicesConfig[item].name);	//um name zu erhalten: devicesConfig[item].name
+		}
+}
 
 //starts server on port 3000
 app.listen(3000, function () {

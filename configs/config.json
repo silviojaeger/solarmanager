@@ -4,7 +4,7 @@
 		"type": "Primo 1.1 -1",
 		"ip": "http://api.icndb.com",
 		"api": "/jokes/random",
-		"interval": 8000,
+		"interval": 4000,
 		"jsonPath": ".value.id"
 	},
 	"devices": {
@@ -12,15 +12,15 @@
 			"name": "Tesla Wallcharger",
 			"brand": "Tesla",
 			"type": "test_1.0",
-			"ip": "http://api.icndb.com",
+			"ip": "http://google.ch",
 			"apiOnOff":	"/test/onoff",
-			"apiGetInfo":	"/test/getInfo"
+			"apiGetInfo": "/test/getInfo"
 		},
 		"2": {
 			"name": "Boiler",
 			"brand": "Oekotherm",
 			"type": "pv_1.7",
-			"ip": "http://api.icndb.com",
+			"ip": "http://sbb.ch",
 			"apiOnOff":	"/test/onoff",
 			"apiGetInfo":	"/test/getInfo"
 		}

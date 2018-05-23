@@ -6,12 +6,11 @@ module.exports=function(app, inverter){
 	  res.sendfile('./view/index.html');
 	});
 	
-	//get actual pover of the inverter
-	app.get('/pover', function (req, res) {
-		console.log('Incoming HTTP request at: /pover');
+	//get actual power of the inverter
+	app.get('/power', function (req, res) {
+		console.log('Incoming HTTP request at: /power');
 		res.setHeader('Content-Type', 'application/json');
-		res.send("Test 123"+inverter.getPover());
-		console.log(inverter.getPover());
+		res.send("Power: "+inverter.getPower());
 	});
 	
 	//other routes here

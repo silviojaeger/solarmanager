@@ -2,100 +2,80 @@
 var request = require('request');
 
 //global variables
-var ip;
-var api;
-var actualPover;
-var intervTime;
-var jsonPath;
+var Settings=
+{
+	"ip":"",
+	"api":"",
+	"actualPower":"",
+	"intervTime":"",
+	"jsonPath":""
+}
 
 //Basic configurations
 function setApi(api){
-	this.api = api;
-	console.log('set API to: '+this.api);
+	Settings.api = api;
+	console.log('set API to: '+Settings.api);
 }
 
 function setIp(ip){
-	this.ip = ip;
-	console.log('set IP to: '+this.ip);
+	Settings.ip = ip;
+	console.log('set IP to: '+Settings.ip);
 }
 
 function setIntervTime(time){
-	this.intervTime = time;
-	console.log('set interval Time to: '+this.intervTime+'ms');
+	Settings.intervTime = time;
+	console.log('set interval Time to: '+Settings.intervTime+'ms');
 }
 
 function setJsonPath(path){
-	this.jsonPath = path;
-	console.log('set JSON-Path to: '+this.jsonPath);
+	Settings.jsonPath = path;
+	console.log('set JSON-Path to: '+Settings.jsonPath);
 }
 
 function getIntervTime(){
-	return this.intervTime;
+	return Settings.intervTime;
 }
 
 function getApi(){
-	return this.api;
+	return Settings.api;
 }
 
 function getIp(){
-	return this.ip;
+	return Settings.ip;
 }
 
-function getPover(){
-	return this.actualPover;
+function getPower(){
+	return Settings.actualPower;
 }
 
-function getPover(){
-	return this.actualPover;
+function getPower(){
+	return Settings.actualPower;
 }
 
 function getJsonPath(){
-	return this.jsonPath;
+	return Settings.jsonPath;
 }
 
 //HTTP requests
-function requestPover(){
+function requestPower(){
 
-		var reqUrl = this.ip+this.api;
+	var SettingsRequest=Settings;
+	var reqUrl = SettingsRequest.ip+SettingsRequest.api;
 	console.log('------HTTP--Request----------------------------');
 	console.log('Start request to: '+reqUrl);
-	console.log('Interval Time: '+ this.intervTime);
-	console.log('JSON Path: '+this.jsonPath)
-	
+	console.log('JSON Path: '+SettingsRequest.jsonPath)
 	
 	request.get(reqUrl, function (error, response, body) {
 	  if(error!=null){console.log('error:', error);} 				// Print the error if one occurred
 	  console.log('statusCode:', response && response.statusCode); 	// Print the response status code if a response was received	  								
 	  console.log('Response: '+body);
 	  console.log('-----------------------------------------------');
-	  console.log('Test: '+ this.jsonPath);
-	  
-	  handleJson(JSON.parse(body));  //calls handleJson function to read the right key/value from the Json file
-	  
-	  //Hier weiter!!!!!!!!! da request in anderem "thread" läuft kann nicht auf variabel jsonPath zugegriffen werden
-	  
-	  //-----------------------------------------------------------------
-	  
-	  
-	  //-----------------------------------------------------------------
 
-	  
-	});
-	
-}
-
-
-
-
-//handle the JSON response file
-function handleJson(json){
-	//has to make: json.value.id    (getJsonPath returns string ".value.id")
-	actualPover=json.value.id;
-	
-	console.log('Test: '+ this.jsonPath);
-	
-	console.log('Power set to: ' + actualPover);
+	  json=JSON.parse(body);
+	  SettingsRequest.actualPower = eval("json"+SettingsRequest.jsonPath) //eval makes code out of String
+	  console.log('Power set to: ' + SettingsRequest.actualPower);
+	});	
 }
 
 //export everything to the mainJS
-module.exports = {setApi, getApi, setIp, getIp, getPover, requestPover, setIntervTime, getIntervTime, setJsonPath, getJsonPath, handleJson}; 
+module.exports = {setApi, getApi, setIp, getIp, getPower, requestPower, setIntervTime, getIntervTime, setJsonPath, getJsonPath}; 
