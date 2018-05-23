@@ -10,7 +10,7 @@ module.exports=function(app, inverter){
 	app.get('/pover', function (req, res) {
 		console.log('Incoming HTTP request at: /pover');
 		res.setHeader('Content-Type', 'application/json');
-		res.send(inverter.getPover());
+		res.send("Test 123"+inverter.getPover());
 		console.log(inverter.getPover());
 	});
 	

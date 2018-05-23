@@ -74,6 +74,12 @@ function requestPover(){
 	  
 	  //Hier weiter!!!!!!!!! da request in anderem "thread" läuft kann nicht auf variabel jsonPath zugegriffen werden
 	  
+	  //-----------------------------------------------------------------
+	  
+	  
+	  //-----------------------------------------------------------------
+
+	  
 	});
 	
 }
@@ -88,7 +94,7 @@ function handleJson(json){
 	
 	console.log('Test: '+ this.jsonPath);
 	
-	console.log('Pover set to: ' + actualPover);
+	console.log('Power set to: ' + actualPover);
 }
 
 //export everything to the mainJS

@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-//var request = require('request'); //mayby not used here
+var request = require('request'); //mayby not used here
 var fs = require('fs');
 
 //Import own modules
@@ -24,7 +24,9 @@ inverter.setJsonPath(inverterConfig.jsonPath);
 
 //Interval
 setInterval(
-		function(){ inverter.requestPover(); }, inverter.getIntervTime()
+	function(){ 
+			inverter.requestPover(); 
+	}, inverter.getIntervTime()
 );
 
 //rules
