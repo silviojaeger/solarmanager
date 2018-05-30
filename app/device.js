@@ -87,8 +87,20 @@ function getJsonPathGetInfo(){
 	return Settings.jsonPathGetInfo;
 }
 
-//HTTP requests
-//to be continued--------------
+//functional functions
+function turnOnOff(on){ 		//true==on, false==off
+	var SettingsRequest=Settings;
+	var reqUrl = SettingsRequest.ip+SettingsRequest.apiOnOff;
+	
+	request(reqUrl, function (error, response, body) {
+	  if(error!=null){console.log('error:', error);} 				// Print the error if one occurred
+	  else{
+		  if(on){console.log("Device turned on");}else{console.log("Device turned off")}
+	  }
+	});	
+}
+
+
 
 //export everything to the mainJS
-module.exports = {setName, setBrand, setType, setIP, setApiOnOff, setApiGetInfo, setJsonPathOnOff, setJsonPathGetInfo, getName, getBrand, getType, getIP, getApiOnOff, getApiGetInfo, getJsonPathOnOff, getJsonPathGetInfo}; 
+module.exports = {setName, setBrand, setType, setIp, setApiOnOff, setApiGetInfo, setJsonPathOnOff, setJsonPathGetInfo, getName, getBrand, getType, getIp, getApiOnOff, getApiGetInfo, getJsonPathOnOff, getJsonPathGetInfo, turnOnOff}; 

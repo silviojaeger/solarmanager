@@ -9,12 +9,14 @@ var fs = require('fs');
 var inverter = require("./app/inverter");
 var rules = require("./app/rules");
 var routes = require("./app/routes")(app, inverter);
+var device = require("./app/device.js");
 
 //global variables
 var configJson;
 var inverterConfig;
 var devicesConfig;
 var solarmanagerConfig;
+var devices = [];
 
 
 //initializing
@@ -25,7 +27,16 @@ initDevices();
 setInterval(function(){ inverter.requestPower(); }, inverter.getIntervTime());
 
 //send to EmonCMS
-setInterval(function(){ sendEmonCMS(); }, 5000);
+setInterval(function(){ sendEmonCMS(); test();}, 5000); //Achtung hier nocht testfunktion löschen
+
+//-----------------------------------------------------------------------------------------------------
+function test(){
+	
+	devices[0].turnOnOff(false);
+	devices[1].turnOnOff(true);
+}
+//-----------------------------------------------------------------------------------------------------
+
 
 //rules
 if(rules.checkLowerRate()){
@@ -57,9 +68,26 @@ function initDevices(){
 	inverter.setJsonPath(inverterConfig.jsonPath);
 	
 	for(var item in devicesConfig) {
-		  console.log(item+": "+devicesConfig[item].name);	//um name zu erhalten: devicesConfig[item].name
-		  // not implemented yet
-		}
+		  console.log(item+": "+devicesConfig[item].name);
+		  //initialize one device
+		  var obj = new device;
+		  device.setName(devicesConfig[item].name);
+		  device.setBrand(devicesConfig[item].brand);
+		  device.setType(devicesConfig[item].type);
+		  device.setIp(devicesConfig[item].ip);
+		  device.setApiOnOff(devicesConfig[item].apiOnOff);
+		  device.setApiGetInfo(devicesConfig[item].apiGetInfo);
+		  device.setJsonPathOnOff(devicesConfig[item].jsonPathOnOff);
+		  device.setJsonPathGetInfo(devicesConfig[item].jsonPathGetInfo);
+
+		  //Put device into devices array
+		  devices.push(device);
+		  
+		  
+		  
+		  
+	}
+	console.log(devices);
 }
 
 //EmonCMS HTTP Post request
