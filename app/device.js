@@ -4,17 +4,30 @@ var request = require('request');
 //global variables
 var Settings=
 {
+	"name":"",
+	"brand":"",
+	"type":"",
 	"ip":"",
-	"api":"",
-	"actualPover":"",
-	"intervTime":"",
-	"jsonPathOnOff":""
+	"apiOnOff":"",
+	"apiGetInfo":"",
+	"jsonPathOnOff": "",
+	"jsonPathGetInfo":	""
 }
 
-//Basic configurations
-function setApi(api){
-	Settings.api = api;
-	console.log('set API to: '+Settings.api);
+//Basic configurations "setters"
+function setName(name){
+	Settings.name = name;
+	console.log('set name to: '+Settings.name);
+}
+
+function setBrand(brand){
+	Settings.brand = brand;
+	console.log('set brand to: '+Settings.brand);
+}
+
+function setType(type){
+	Settings.type = type;
+	console.log('set type to: '+Settings.type);
 }
 
 function setIp(ip){
@@ -22,42 +35,60 @@ function setIp(ip){
 	console.log('set IP to: '+Settings.ip);
 }
 
-function setIntervTime(time){
-	Settings.intervTime = time;
-	console.log('set interval Time to: '+Settings.intervTime+'ms');
+function setApiOnOff(apiOnOff){
+	Settings.apiOnOff = apiOnOff;
+	console.log('set apiOnOff to: '+Settings.apiOnOff);
 }
 
-function setJsonPath(path){
-	Settings.jsonPath = path;
-	console.log('set JSON-Path to: '+Settings.jsonPath);
+function setApiGetInfo(apiGetInfo){
+	Settings.apiGetInfo = apiGetInfo;
+	console.log('set apiGetInfo to: '+Settings.apiGetInfo);
 }
 
-function getIntervTime(){
-	return Settings.intervTime;
+function setJsonPathOnOff(jsonPathOnOff){
+	Settings.jsonPathOnOff = jsonPathOnOff;
+	console.log('set jsonPathOnOff to: '+Settings.jsonPathOnOff);
 }
 
-function getApi(){
-	return Settings.api;
+function setJsonPathGetInfo(jsonPathGetInfo){
+	Settings.jsonPathGetInfo = jsonPathGetInfo;
+	console.log('set jsonPathGetInfo to: '+Settings.jsonPathGetInfo);
+}
+//Basic configurations "getters"
+function getName(){
+	return Settings.name;
+}
+
+function getBrand(){
+	return Settings.brand;
+}
+
+function getType(){
+	return Settings.type;
 }
 
 function getIp(){
 	return Settings.ip;
 }
 
-function getPover(){
-	return Settings.actualPover;
+function getApiOnOff(){
+	return Settings.apiOnOff;
 }
 
-function getPover(){
-	return Settings.actualPover;
+function getApiGetInfo(){
+	return Settings.apiGetInfo;
 }
 
-function getJsonPath(){
-	return Settings.jsonPath;
+function getJsonPathOnOff(){
+	return Settings.jsonPathOnOff;
+}
+
+function getJsonPathGetInfo(){
+	return Settings.jsonPathGetInfo;
 }
 
 //HTTP requests
-
+//to be continued--------------
 
 //export everything to the mainJS
-module.exports = {setApi, getApi, setIp, getIp, getPover, requestPover, setIntervTime, getIntervTime, setJsonPath, getJsonPath}; 
+module.exports = {setName, setBrand, setType, setIP, setApiOnOff, setApiGetInfo, setJsonPathOnOff, setJsonPathGetInfo, getName, getBrand, getType, getIP, getApiOnOff, getApiGetInfo, getJsonPathOnOff, getJsonPathGetInfo}; 

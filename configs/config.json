@@ -1,4 +1,21 @@
 {
+	"solarmanager": {
+		"ip" : "",
+		"port":	"",
+		"emonUrl" : "http://767727-5.web1.fh-htwchur.ch/emoncms",
+		"emonUsr": "",
+		"emonPasswd" : "",
+		"emonApiKey": "4e381a197b1e5ceb8bd81b0a80b937d4",
+		"loverRate": {
+			"mo" : "",
+			"di" : "",
+			"mi" : "",
+			"do" : "",
+			"fr" : "",
+			"sa" : "",
+			"so" : ""
+		}
+	},
 	"inverter": {
 		"brand": "Fronius",
 		"type": "Primo 1.1 -1",
@@ -9,12 +26,14 @@
 	},
 	"devices": {
 		"1": {
-			"name": "Tesla Wallcharger",
+			"name": "My Tesla Wallcharger",
 			"brand": "Tesla",
 			"type": "test_1.0",
-			"ip": "http://google.ch",
-			"apiOnOff":	"/test/onoff",
-			"apiGetInfo": "/test/getInfo"
+			"ip": "https://jsonplaceholder.typicode.com",
+			"apiOnOff":	"/posts/1",
+			"apiGetInfo": "/comments/1",
+			"jsonPathOnOff": ".title",
+			"jsonPathGetInfo":	".name"
 		},
 		"2": {
 			"name": "Boiler",
@@ -22,7 +41,9 @@
 			"type": "pv_1.7",
 			"ip": "http://sbb.ch",
 			"apiOnOff":	"/test/onoff",
-			"apiGetInfo":	"/test/getInfo"
+			"apiGetInfo":	"/test/getInfo",
+			"jsonPathOnOff": ".test.onoff",
+			"jsonPathGetInfo":	"test.info"
 		}
 	}
 }

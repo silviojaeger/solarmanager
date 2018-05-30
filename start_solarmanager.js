@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var request = require('request'); //mayby not used here
+var request = require('request');
 var fs = require('fs');
 
 //Import own modules
@@ -14,17 +14,18 @@ var routes = require("./app/routes")(app, inverter);
 var configJson;
 var inverterConfig;
 var devicesConfig;
+var solarmanagerConfig;
 
-//-------TESTING-------------------------------------------------------------------------
+
+//initializing
 readConfig();
 initDevices();
 
-//Interval
-setInterval(
-	function(){ 
-			inverter.requestPower(); 
-	}, inverter.getIntervTime()
-);
+//Interval to requestPower from Inverter
+setInterval(function(){ inverter.requestPower(); }, inverter.getIntervTime());
+
+//send to EmonCMS
+setInterval(function(){ sendEmonCMS(); }, 5000);
 
 //rules
 if(rules.checkLowerRate()){
@@ -32,8 +33,6 @@ if(rules.checkLowerRate()){
 }else{
 	console.log("Hochtarif");
 };
-
-//----------------------------------------------------------------------------------------
 
 
 //send public folder to client
@@ -45,6 +44,7 @@ function readConfig(){
 	configJson = JSON.parse(fs.readFileSync('./configs/config.json', 'utf8'));	//read config.json and store it to var configJson
 	inverterConfig= configJson.inverter;										//read Inverter	
 	devicesConfig= configJson.devices;											//read devices
+	solarmanagerConfig = configJson.solarmanager;
 	
 	
 };
@@ -58,7 +58,23 @@ function initDevices(){
 	
 	for(var item in devicesConfig) {
 		  console.log(item+": "+devicesConfig[item].name);	//um name zu erhalten: devicesConfig[item].name
+		  // not implemented yet
 		}
+}
+
+//EmonCMS HTTP Post request
+function sendEmonCMS(){
+	var url = solarmanagerConfig.emonUrl;
+	var key = solarmanagerConfig.emonApiKey;
+	var data = {			
+			"generated": inverter.getPower(),
+			"consumed": 100,
+			"combined": (inverter.getPower()-100)
+	}
+	request.post(url+'/input/post?node=emontx&fulljson='+JSON.stringify(data)+'&apikey='+key, function (error, response, body){
+		if(error!=null){console.log('error:', error);}
+		else{console.log('EmonCMS POST success');}
+	});
 }
 
 //starts server on port 3000
