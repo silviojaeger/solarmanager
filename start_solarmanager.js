@@ -70,7 +70,7 @@ function initDevices(){
 	for(var item in devicesConfig) {
 		  console.log(item+": "+devicesConfig[item].name);
 		  //initialize one device
-		  var obj = new device;
+		  //var obj = new device;
 		  device.setName(devicesConfig[item].name);
 		  device.setBrand(devicesConfig[item].brand);
 		  device.setType(devicesConfig[item].type);
