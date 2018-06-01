@@ -81,13 +81,8 @@ function initDevices(){
 		  device.setJsonPathGetInfo(devicesConfig[item].jsonPathGetInfo);
 
 		  //Put device into devices array
-		  devices.push(device);
-		  
-		  
-		  
-		  
+		  devices.push(device);	  
 	}
-	console.log(devices);
 }
 
 //EmonCMS HTTP Post request
