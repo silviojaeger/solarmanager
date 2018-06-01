@@ -106,7 +106,7 @@ function sendEmonCMS(){
 }
 
 //starts server on port 3000
-app.listen(3000, function () {
+app.listen(80, function () {
   console.log('----------------------------------');
   console.log('|  Solarmanager server started!  |');
   console.log('----------------------------------');
