@@ -34,13 +34,13 @@
 	},
 	"devices": {
 		"1": {
-			"name": "My Tesla Wallcharger",
-			"brand": "Tesla",
-			"type": "test_1.0",
+			"name": "Smart-Switch",
+			"brand": "MyStrom",
+			"type": "wifi switch 2",
 			"ip": "https://jsonplaceholder.typicode.com",
-			"apiOnOff":	"/posts/1",
-			"apiGetInfo": "/comments/2",
-			"jsonPathGetInfo":	".name"
+			"apiOnOff":	"/toggle",
+			"apiGetInfo": "/report",
+			"jsonPathGetInfo":	".power"
 		},
 		"2": {
 			"name": "Boiler",

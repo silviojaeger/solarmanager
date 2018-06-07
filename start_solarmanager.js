@@ -28,30 +28,34 @@ initDevices();
 //Interval to requestPower from Inverter
 setInterval(function(){ inverter.requestPower(); }, inverter.getIntervTime());
 
-//Interval to requestPower from Inverter
+//Interval to requestPower from powerMeter
 setInterval(function(){ powerMeter.requestUsedPower(); }, powerMeter.getIntervTime());
 
 //send to EmonCMS
-setInterval(function(){ sendEmonCMS(); test();}, 5000); //Achtung hier noch testfunktion löschen
+setInterval(function(){ sendEmonCMS();}, 5000); 
 
-//-----------------------------------------------------------------------------------------------------
+//----EXAMPLE------------------------------------------------------------------------------------------
+setInterval(function(){ test();}, 15000); 
 function test(){
 	
-	devices[0].turnOnOff(false);
-	devices[1].turnOnOff(true);
-	
+	//Get Info from the first device
 	devices[0].getInfo();
+	
+	//turn on device if there is energy surplus, else turn it off
+	if(rules.checkEnergySurplus()>0){
+		devices[0].turnOnOff(true);
+	}else{
+		devices[0].turnOnOff(false);
+	}
+	
+	//Check lower rate
+	if(rules.checkLowerRate()){
+		console.log("Niedertarif");
+	}else{
+		console.log("Hochtarif");
+	};
 }
 //-----------------------------------------------------------------------------------------------------
-
-
-//rules
-if(rules.checkLowerRate()){
-	console.log("Niedertarif");
-}else{
-	console.log("Hochtarif");
-};
-
 
 //send public folder to client
 app.use(express.static(path.join(__dirname, 'public')));
@@ -64,8 +68,6 @@ function readConfig(){
 	powerMeterConfig= configJson.powerMeter;									//read powerMeter
 	devicesConfig= configJson.devices;											//read devices
 	solarmanagerConfig = configJson.solarmanager;								//read basic Solarmanager configs
-	
-	
 };
 
 //Initialize inverter and all devices
