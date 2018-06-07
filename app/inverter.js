@@ -48,10 +48,6 @@ function getPower(){
 	return Settings.actualPower;
 }
 
-function getPower(){
-	return Settings.actualPower;
-}
-
 function getJsonPath(){
 	return Settings.jsonPath;
 }
@@ -61,7 +57,7 @@ function requestPower(){
 
 	var SettingsRequest=Settings;
 	var reqUrl = SettingsRequest.ip+SettingsRequest.api;
-	console.log('------HTTP--Request----------------------------');
+	console.log('----Inverter--HTTP--Request--------------------');
 	console.log('Start request to: '+reqUrl);
 	console.log('JSON Path: '+SettingsRequest.jsonPath)
 	
@@ -71,11 +67,11 @@ function requestPower(){
 	  console.log('Response: '+body);
 	  console.log('-----------------------------------------------');
 
-	  json=JSON.parse(body);
-	  SettingsRequest.actualPower = eval("json"+SettingsRequest.jsonPath) //eval makes code out of String
+	  var json=JSON.parse(body);
+	  SettingsRequest.actualPower = eval("json"+SettingsRequest.jsonPath) //eval() makes code out of String
 	  console.log('Power set to: ' + SettingsRequest.actualPower);
 	});	
 }
 
-//export everything to the mainJS
+//export everything to start_solarmanager.js
 module.exports = {setApi, getApi, setIp, getIp, getPower, requestPower, setIntervTime, getIntervTime, setJsonPath, getJsonPath}; 

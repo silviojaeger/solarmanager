@@ -24,6 +24,14 @@
 		"interval": 4000,
 		"jsonPath": ".value.id"
 	},
+	"powerMeter": {
+		"brand": "Fronius",
+		"type": "Smart Meter 63A-3",
+		"ip": "http://api.icndb.com",
+		"api": "/jokes/random",
+		"interval": 4000,
+		"jsonPath": ".value.id"
+	},
 	"devices": {
 		"1": {
 			"name": "My Tesla Wallcharger",
@@ -31,8 +39,7 @@
 			"type": "test_1.0",
 			"ip": "https://jsonplaceholder.typicode.com",
 			"apiOnOff":	"/posts/1",
-			"apiGetInfo": "/comments/1",
-			"jsonPathOnOff": ".title",
+			"apiGetInfo": "/comments/2",
 			"jsonPathGetInfo":	".name"
 		},
 		"2": {
@@ -42,7 +49,6 @@
 			"ip": "http://sbb.ch",
 			"apiOnOff":	"/test/onoff",
 			"apiGetInfo":	"/test/getInfo",
-			"jsonPathOnOff": ".test.onoff",
 			"jsonPathGetInfo":	"test.info"
 		}
 	}
