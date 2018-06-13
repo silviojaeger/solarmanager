@@ -6,7 +6,7 @@ var Settings=
 {
 	"ip":"",
 	"api":"",
-	"actualPower":"",
+	"usedPower":"",
 	"intervTime":"",
 	"jsonPath":""
 }
@@ -53,11 +53,11 @@ function getJsonPath(){
 }
 
 //HTTP requests
-function requestPower(){
+function requestUsedPower(){
 
 	var SettingsRequest=Settings;
 	var reqUrl = SettingsRequest.ip+SettingsRequest.api;
-	console.log('----Inverter--HTTP--Request--------------------');
+	console.log('-----PowerMeter--HTTP--Request---------------------');
 	console.log('Start request to: '+reqUrl);
 	console.log('JSON Path: '+SettingsRequest.jsonPath)
 	
@@ -68,10 +68,10 @@ function requestPower(){
 	  console.log('-----------------------------------------------');
 
 	  var json=JSON.parse(body);
-	  SettingsRequest.actualPower = eval("json"+SettingsRequest.jsonPath) //eval() makes code out of String
+	  SettingsRequest.actualPower = eval("json"+SettingsRequest.jsonPath) //eval makes code out of String
 	  console.log('Power set to: ' + SettingsRequest.actualPower);
 	});	
 }
 
 //export everything to start_solarmanager.js
-module.exports = {setApi, getApi, setIp, getIp, getPower, requestPower, setIntervTime, getIntervTime, setJsonPath, getJsonPath}; 
+module.exports = {setApi, getApi, setIp, getIp, getPower, requestUsedPower, setIntervTime, getIntervTime, setJsonPath, getJsonPath}; 

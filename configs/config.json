@@ -24,16 +24,23 @@
 		"interval": 4000,
 		"jsonPath": ".value.id"
 	},
+	"powerMeter": {
+		"brand": "Fronius",
+		"type": "Smart Meter 63A-3",
+		"ip": "http://api.icndb.com",
+		"api": "/jokes/random",
+		"interval": 4000,
+		"jsonPath": ".value.id"
+	},
 	"devices": {
 		"1": {
-			"name": "My Tesla Wallcharger",
-			"brand": "Tesla",
-			"type": "test_1.0",
+			"name": "Smart-Switch",
+			"brand": "MyStrom",
+			"type": "wifi switch 2",
 			"ip": "https://jsonplaceholder.typicode.com",
-			"apiOnOff":	"/posts/1",
-			"apiGetInfo": "/comments/1",
-			"jsonPathOnOff": ".title",
-			"jsonPathGetInfo":	".name"
+			"apiOnOff":	"/toggle",
+			"apiGetInfo": "/report",
+			"jsonPathGetInfo":	".power"
 		},
 		"2": {
 			"name": "Boiler",
@@ -42,7 +49,6 @@
 			"ip": "http://sbb.ch",
 			"apiOnOff":	"/test/onoff",
 			"apiGetInfo":	"/test/getInfo",
-			"jsonPathOnOff": ".test.onoff",
 			"jsonPathGetInfo":	"test.info"
 		}
 	}
